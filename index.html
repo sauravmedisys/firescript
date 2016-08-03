@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Firescript Practice</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="resources/css/bootstrap.css" rel="stylesheet" />
+    <link href="resources/css/popup.css" rel="stylesheet" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<!-- <script src="resources/script/popup.js"></script> -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	
+	<script>
+	/*
+	 * following function for popup registration window start
+	 *
+	 */
+	function deselect(e) {
+		  $('.pop').slideFadeToggle(function() {
+			e.removeClass('selected');
+		  });    
+		}
+
+	$(function() {
+	  $('#sendButton').on('click', function() {
+		if($(this).hasClass('selected')) {
+		  deselect($(this));               
+		} else {
+		  $(this).addClass('selected');
+		  $('.pop').slideFadeToggle();
+		}
+		return false;
+	  });
+
+	  $('.close').on('click', function() {
+		deselect($('#sendButton'));
+		return false;
+	  });
+	});
+
+	$.fn.slideFadeToggle = function(easing, callback) {
+	  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+	};
+	/*
+	 * following function for popup registration window end
+	 *
+	 */
+	</script>
+	
+</head>
+<body style="font-family:Verdana">
+  <div class="container">
+<div class="row " style="padding-top:40px;">
+    <h3 class="text-center" >Firescript Practice </h3>
+    <br /><br />
+<!-- 	chat box start -->
+    <div class="col-md-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                RECENT CHAT HISTORY
+            </div>
+            <div class="panel-body">
+				<ul class="media-list">
+
+					<li class="media">
+
+						<div class="media-body">
+
+							<div class="media">
+								<a class="pull-left" href="#">
+									<img class="media-object img-circle " src="assets/img/user.png" />
+								</a>
+								<div class="media-body" >
+									Donec sit amet ligula enim. Duis vel condimentum massa.
+									Donec sit amet ligula enim. Duis vel condimentum massa.
+									<br />
+								   <small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>
+									<hr />
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+					<input type="text" class="form-control" placeholder="Enter Message" />
+					<span class="input-group-btn">
+						<button class="btn btn-info" id="sendButton" type="button">SEND</button>
+					</span>
+				</div>
+            </div>
+        </div>
+    </div>
+	<!-- chat application box end -->
+	<!-- Register Dialog Box start-->
+	<div class="messagepop pop">
+		<form method="post" id="new_message" action="/messages">
+			<p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
+			<p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
+			<p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
+		</form>
+	</div>	<!-- Register Dialog Box end-->
+	<!-- online user list start -->
+    <div class="col-md-4">
+		<div class="panel panel-primary">
+            <div class="panel-heading">
+               ONLINE USERS
+            </div>
+            <div class="panel-body">
+                <ul class="media-list">
+
+					<li class="media">
+
+						<div class="media-body">
+
+							<div class="media">
+								<a class="pull-left" href="#">
+									<img class="media-object img-circle" style="max-height:40px;" src="assets/img/user.png" />
+								</a>
+								<div class="media-body" >
+									<h5>Alex Deo | User </h5>
+									
+								   <small class="text-muted">Active From 3 hours</small>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+        </div>
+    </div>
+	<!-- online user list start -->
+</div>
+  </div>
+</body>
+</html>

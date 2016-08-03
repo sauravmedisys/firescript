@@ -1,0 +1,89 @@
+<! DOCTYPE html>
+<html>
+<head>
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAOqWvzDy8BT16Ao_MbUcHfAqFAhObJVEM",
+    authDomain: "javabse-00001.firebaseapp.com",
+    databaseURL: "https://javabse-00001.firebaseio.com",
+    storageBucket: "javabse-00001.appspot.com",
+  };
+  firebase.initializeApp(config);
+  // end initializeApp
+  
+  function login(){
+	var email = document.getElementById("lemail").value;
+	var password  = document.getElementById("lpass").value;
+	
+	firebase.auth().signInWithEmailAndPassword(email, password).catch(
+		function(result) {
+		  // The firebase.User instance:
+		  var user = result.user;
+		  
+		  var credential = result.credential;
+		  alert("login sucess : "+user);
+		},
+		function(error) {
+		// Handle Errors here.
+		
+		var errorCode = error.code;
+		  var errorMessage = error.message;
+		  console.log(errorMessage);
+		  alert(errorMessage);
+		  
+		// ...ater
+	});
+}
+  function registration(){
+	
+	var rname  = document.getElementById("rname").value;
+	var remail = document.getElementById("remail").value;
+	var rpass  = document.getElementById("rpass").value;
+	
+	firebase.auth().createUserWithEmailAndPassword(remail, rpass).catch(
+	function(result) {
+	  // The firebase.User instance:
+	  var user = result.user;
+	  
+	  var credential = result.credential;
+	  alert("login sucess : "+user);
+	},
+	function(error) {
+		// Handle Errors here.
+		
+		var errorCode = error.code;
+		  var errorMessage = error.message;
+		  console.log(errorMessage);
+		  alert(errorMessage);
+		  
+		// ...ater
+		});
+  }
+
+</script>
+</head>
+
+<body>
+
+<h1>Firebase Application Login</h1>
+<form id="login" method="POST" action="#" onsubmit="login(); return false">
+email: <input type="text" id="lemail" /><br>
+pass : <input type="text" id="lpass" /><br>
+
+<input type="submit" value="login" />
+</form>
+
+<h1>Firebase Application Registration</h1>
+
+name	: <input type="text" id="rname" /><br>
+email	: <input type="text" id="remail" /><br>
+pass 	: <input type="text" id="rpass" /><br>
+
+<input type="button" value="registration" onclick="registration()"/>
+
+</body>
+
+</html>
